@@ -9,16 +9,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'NAME': '/var/lib/firebird2.5/data/firebirdsqlro.fdb',
-        'ENGINE': 'django.db.backends.firebird',
-        'USER': 'sysdba',
-        'PASSWORD': 'masterkey'
-    }
-}
-
-# Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
@@ -44,14 +34,6 @@ MEDIA_ROOT = ''
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = ''
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'by730$5cg)tlch8@@4jf09_+14a!*p0*@djdshr9ti!eob9sm7'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -66,12 +48,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'firebird_ro.urls'
 
-TEMPLATE_DIRS = (
- '/var/local/firebirdsqlro/firebird_ro/templates',
-)
-
 INSTALLED_APPS = (
-    'django_extensions',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -85,3 +62,17 @@ INSTALLED_APPS = (
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
+
+##################
+# LOCAL SETTINGS #
+##################
+
+# Allow any settings to be defined in local_settings.py which should be
+# ignored in your version control system allowing for settings to be
+# defined per machine.
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+

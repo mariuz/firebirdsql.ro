@@ -1,0 +1,23 @@
+#fire h1 {
+color: #F0F0E1;
+font-family: League-Gothic, Courier;
+font-size: 150px;
+margin: 250px;
+text-align: center;
+text-shadow: #FEFCC9 0px 0px 20px, #FEEC85 10px -10px 30px, #FFAE34 -20px -20px 40px, #EC760C 20px -40px 50px, #CD4606 -20px -60px 60px, #973716 0px -80px 70px, #451B0E 10px -90px 80px;
+}
+
+#fire h2 {
+color: #F0F0E1;
+font-family: League-Gothic, Courier;
+font-size: 50px;
+margin: 20px auto;
+text-align: center;
+text-shadow: #FEFCC9 0px 0px 20px, #FEEC85 10px -10px 30px, #FFAE34 -20px -20px 40px, #EC760C 20px -40px 50px, #CD4606 -20px -60px 60px, #973716 0px -80px 70px, #451B0E 10px -90px 80px;
+}
+
+
+#fire {
+background: black;
+padding: 100px;
+}

@@ -1,0 +1,13 @@
+{% if latest_news_list %}
+    <ul>
+    {% for news in latest_news_list %}
+        <li><dd class="portletItem odd">
+	<a class="title" href="/news/{{ news.id }}/">{{ news.title }}</a>
+         
+	</li> </dd>
+        {{ news.body }}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No news are available.</p>
+{% endif %}

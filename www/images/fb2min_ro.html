@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="pt-BR"><head>   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"><title>Firebird în 2 minute</title>  <style type="text/css">
+/* default css */
+table {
+font-size: 1em;
+line-height: inherit;
+}
+div, address, ol, ul, li, option, select {
+margin-top: 0px;
+margin-bottom: 0px;
+}
+p {
+margin: 0px;
+}
+body {
+margin: 6px;
+padding: 0px;
+font-family: Verdana, sans-serif;
+font-size: 10pt;
+background-color: #ffffff;
+}
+h6 { font-size: 10pt }
+h5 { font-size: 11pt }
+h4 { font-size: 12pt }
+h3 { font-size: 13pt }
+h2 { font-size: 14pt }
+h1 { font-size: 16pt }
+blockquote {padding: 10px; border: 1px #DDD dashed }
+a img {border: 0}
+/* end default css */
+/* default print css */
+@media print {
+body {
+padding: 0;
+margin: 0;
+}
+/* used to insert page numbers */
+div.google_header::before, div.google_footer::before {
+position: absolute;
+top: 0;
+}
+}
+@page {
+@top {
+content: flow(header);
+}
+@bottom {
+content: flow(footer);
+}
+}
+/* end default print css */
+/* custom css */
+/* end custom css */
+/* ui edited css */
+body {
+font-family: Verdana;
+font-size: 10.0pt;
+line-height: normal;
+background-color: #ffffff;
+}
+/* end ui edited css */
+</style>
+<div id="doc-contents">
+<table id="v8nm" align="center" border="0" cellpadding="0" cellspacing="0" width="780">
+<tbody id="iedr">
+<tr id="n37d">
+<td id="lfdx">
+<div id="vol." style="padding: 1em 0pt; text-align: left;">
+<img id="sh.h" src="fb2min_logo.jpg" style="width: 112px; height: 112px;">
+</div>
+</td>
+<td id="pnd5" valign="top" width="0%">
+<p align="center" id="u.o2">
+<b id="y9oh"><font id="cnwj" face="Verdana, Arial, Helvetica, sans-serif" size="+3">Firebird în 2 minute</font></b></p>
+<p id="uhwz" align="center">
+<i id="kie2">de <a href="http://www.firebirdnews.org/" id="xkcu" target="_blank">Carlos H. Cantu</a> - versiunea documentului 1.3 - Februarie/2010</i><br id="yiqc">
+<i id="isos">Ediţii traduse în: <a href="http://www.firebirdnews.org/docs/fb2min_cz.html" id="cesb">Cehă</a>, <a href="http://www.firebirdnews.org/docs/fb2min_ptbr.html" id="s0_2">Portugheza</a>(Braziliana), <a href="http://www.firebirdnews.org/docs/fb2min_pl.html" id="qhhp">Poloneză</a>, <a href="http://www.firebirdnews.org/docs/fb2min_de.html" id="n_x3">German</a>a, <a href="http://www.firebirdnews.org/docs/fb2min_tk.html" id="z7qv">Turcă</a>,<br id="m4zp">
+<a href="http://www.firebirdnews.org/docs/fb2min_ptpt.html" id="kirz">Portugheza</a>, <a href="http://www.firebirdnews.org/docs/fb2min_es.html" id="y-e9">Spaniolă</a>, <a href="http://www.firebirdnews.org/docs/fb2min_sw.html" id="h.mw">Suedeză</a>, <a href="http://www.firebirdnews.org/docs/fb2min_fr.html" id="yq5f">Franceză</a>, <a href="http://www.firebirdnews.org/docs/fb2min_it.html" id="jszx">Italiană</a>, <a href="http://www.firebirdnews.org/docs/fb2min_hu.html" id="i-2v">Maghiară</a></i><i id="lhek">, <a href="http://www.firebirdnews.org/docs/fb2min_bg.html" id="fev0">Bulgară</a>, <a href="http://www.firebirdnews.org/docs/fb2min_ru.html" id="vwk1">Rusă</a>, <a href="http://www.firebirdnews.org/docs/fb2min_jp.html" id="q23x">Japoneză</a> </i>
+</p>
+<p id="m80s" align="center">
+<a href="http://www.firebirdnews.org/docs/fb2min.pdf" id="y6vl">Acest document exista şi în format PDF (engleza)</a>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table id="wbw1" align="center" border="0" cellpadding="0" cellspacing="10" width="780">
+<tbody id="ohlw">
+<tr id="oi98">
+<td id="x1qz" valign="top" width="50%">
+<h2 class="Subtitle" id="il:t">
+<span id="jwk9">Introducere </span><br id="b91-">
+</h2>
+<p id="b0h8">
+Dacă citiţi acest document, probabil că este primul dumneavoastră
+contact cu Sistemul de Gestiune al Bazelor de Date relaţionale Firebird
+. Acest document
+</p>
+<p id="m3rr">prezintă caracteristici&nbsp; esenţiale ale sistemului
+relaţional numit Firebird.După sfârşitul lecturii sunt sigur că o să
+fiţi nerăbdător să descărcaţi pachetul de instalare şi să îl încercaţi
+singur
+</p>
+<p class="Text" id="bkhq" align="justify">
+</p>
+<h2 class="Subtitle" id="kv_t">
+<span id="fpm6">Istoria Firebird</span><br id="z3k2">
+</h2>
+<br id="h7g:">
+<p id="zozs">
+<span id="w41l"><b id="zk4v">Firebird</b></span> a fost creat iniţial&nbsp; din codul sursă Borland Interbase 6.0. Este cod deschis şi <b id="wm3:">nu</b> are o licenţă duală.Nu contează dacă îl foloseşti într-un proiect comercial sau cu cod deschis Firebird este <span id="pmfj"><b id="itaf">în totalitate gratuit</b></span>.
+</p>
+<p class="Text" id="y1ba" align="justify">
+</p>
+<p class="Text" id="hb0m">
+Tehnologia <b id="j6ec">Firebird&nbsp;</b> este în folosinţă de peste 20 de ani , ceea ce face ca Firebird sa fie un produs <span id="l5wc"><b id="v.ut">matur</b></span> şi <span id="ly.f"><b id="j-wr">stabil </b></span><br id="b4nu">
+</p>
+<h2 class="Subtitle" id="b.y.">
+Caracteristici esenţiale
+</h2>
+<p class="Text" id="ednq">&nbsp;Să nu va lăsaţi păcălit de dimensiunea
+pachetului de instalare! Firebird este un foarte puternic Sistem de
+Gestiune al Bazelor de Date Relaţionale.Se pot crea baze de date de
+câţiva kiloOcteţi pâna la sute de GigaOcteti cu performanţe bune si
+fără a fi nevoie de nici o întreţinere!
+</p>
+<p class="Text" id="ednq">
+<br id="ei7s">
+</p>
+<p class="Text" id="vvkf">
+Mai jos găsiţi o listă cu cele mai importante caracteristici ale sistemului Firebird:
+</p>
+<ul class="Text" id="nlj9" type="disc">
+<li id="enhz">
+Suport complet pentru <span id="eg-e"><b id="ywwf">Proceduri Stocate</b></span> si <span id="zez4"><b id="x5_t">Triggeri </b></span><br id="qorj">
+</li>
+<li id="tqvr">
+Suport complet pt<b id="gyre"> Tranzacţii (ACID)<br id="x5tt">
+</b>
+</li>
+<li id="odmd">
+<b id="m5j2">Integritate Referenţială</b>
+</li>
+<li id="qx4o">
+<span id="v_q6"><b id="ayq6">Arhitectura Multi Gerneraţionala (MGA</b></span>)
+</li>
+<li id="uw_z">
+Foloseşte puţine resurse
+</li>
+<li id="kd48">
+Un limbaj intern pentru Proceduri Stocate si Trigeri (<span id="t305"><b id="q:xo">PSQL</b></span>)
+</li>
+<li id="z30d">
+Suport pentru<span id="xpff"><b id="x8gd"> Funcţii Externe (UDF)</b></span>
+</li>
+<li id="f.os">
+Nu este necesar un<b id="wpqz"> Administrator de Baze de Date </b>specializat<b id="wpqz"> (DBA)<br id="bs08">
+</b>
+</li>
+<li id="sruy">
+<span id="hmva"><b id="yyi:">Nu este necesară</b></span> nici o configurare specială - Doar se <span id="kscx"><b id="p0h8">instalează</b></span> şi se <span id="n_mc"><b id="wn8v">foloseşte</b></span>!
+</li>
+<li id="f8ix">
+<span id="jbxa"><b id="vohd">Comunitate mare</b></span> - şi o mulţime de locuri pe internet de unde se poate obţine suport de calitate şi gratuit
+</li>
+<li id="gbnt">
+Opţional se poate folosi <span id="gqa-"><b id="z-gs">versiunea</b></span> <b id="p846">embedded&nbsp;</b> pentru a crea cataloage de produse pe un CDROM sau versiuni de evaluare<b id="p846"><br id="x3-g">
+</b>
+</li>
+<li id="gghw">
+O mulţime&nbsp; de <b id="j67u">utilitare adiţionale</b>, incluzînd unelte grafice de administrare, aplicaţii de replicare, etc.
+</li>
+<li id="itkt">
+<b id="qi45">Scrieri</b> sigure pe disc cu recuperare rapidă, nu este nevoie de loguri pentru tranzacţii !
+</li>
+<li id="l9fd">
+<span id="gx10"><b id="xaas">Metode&nbsp; variate de acces la baza de date</b></span> prin : API nativ, drivere dbExpress , ODBC, OLEDB, provider .Net , driver JDBC nativ de tip 4 , modul Python , PHP, Perl, etc.
+</li>
+<li id="gu4w">
+<b id="b92j"> Suport direct pentru </b>sistemele de operare majore enumerăm: Windows, Linux, Solaris, MacOSX.
+</li>
+<li id="eu:n">
+<b id="v4qi">Backup Incremental </b>
+</li>
+<li id="te6y">
+<b id="i5ty">Kituri pentru 64biti</b><br id="z3-x">
+</li>
+<li id="nr33">
+Implementarea <b id="kk20">cursoar</b><span id="xflp"><b id="tv73">elor in PSQL</b></span>
+</li>
+</ul>
+<p class="Text" id="wlrs">&nbsp;
+
+</p>
+</td>
+<td id="e0t1" bgcolor="#000000" width="3">&nbsp;
+
+</td>
+<td id="uqkq" valign="top">
+<h2 class="Subtitle" id="i5l1">
+Încearcă acum!
+</h2>
+<p class="Text" id="dwun">
+Testarea Firebird este un lucru simplu. <b id="lt6.">pachetul de instalare este mai mic de 7 Megaocteţi</b> (depinzând şi de sistemul de operare folosit) şi se instalează automat.<br id="csen">
+</p>
+<p class="Text" id="dwun">
+Se poate descărca de pe site-ul <a href="http://www.firebirdsql.org/index.php?op=files&amp;id=engine" id="htjn" title="principal Firebird">principal Firebird</a>.<br id="wca-">
+</p>
+De observat că&nbsp; Firebird are patru arhitecturi:<br id="u3ha0"><p class="Text" id="rd0v"><b id="wm1h">SuperServer</b>, <b id="ktem">Classic</b>,<b id="ktem">SuperClassic</b> si <b id="iizd">Embedded</b>. Se poate instala <span id="k1420"><b>SuperServer</b></span>&nbsp; daca nu stiti ce să alegeţi. <span id="k1421"><b>Classic</b></span>
+este&nbsp; recomandat pentru sisteme cu mail multe procesoare (SMP) si
+pentru servere cu încărcare mare. SuperServer îşi împarte memoria cache
+între conexiunile bazelor de date şi foloseşte fire de execuţie&nbsp;
+pentru a procesa fiecare conexiune . Classic porneste câte un proces
+server independent pentru fiecare conexiune creată.SuperClasic foloseste
+un singur proces cu mai multe fire de execuţie pentru fiecare conexiune.
+</p>
+<p class="Text" id="ke00">
+Versiunea <b id="vi1u">embedded</b> este o variantă&nbsp; <b id="ep9u">incredibilă&nbsp;</b> a serverului. Este un<span id="by:l"><b id="blfb"> server întreg Firebird, împachetat în doar câteva fişiere</b></span> . Este foarte usor <a href="http://www.firebirdsql.org/manual/ufb-cs-embedded.html#ufb-cs-embedded-deploy" id="prtg" target="_blank">de trimis</a> la clienti, deoarece nu este <b id="bcgd">necesară o instalare separată a server-ului </b>. Este ideal pentru cataloage pe CDROM(DVDROM),aplicaţii demo şi desktop&nbsp; de sine stătătoare.<br id="j7_t">
+</p>
+<p class="Text" id="zqyj">Firebird vine cu un set de utilitare ce pot
+fi folosite din linie de comandă pentru a crea baze de date , afişa
+statistici interne, a executa comenzi SQL şi scripturi, a efectua
+backup-uri şi restaurări, etc. Dacă preferaţi o unealtă grafică ,
+există o mulţime de opţiuni de unde se poate alege chiar versiuni
+gratuite.
+</p>
+<p class="Text" id="zqyj">
+Verificaţi lista de aplicaţii de la şfarsitul documentului.
+</p>
+<p class="Text" id="zqyj">
+Pe <span id="cm9d"><b id="e-mt">Windows</b></span> , se poate porni Firebird ca <span id="uplg"><b id="wv1l">serviciu</b></span> sau în <span id="h1n4"><b id="hoau">modul aplicaţie</b></span> .
+</p>
+<p class="Text" id="zqyj">
+Instalerul poate crea o icoana în Panoul de Control de unde se poate controla server-ul (se poate porni , opri ...etc)<br id="mrsb">
+</p>
+<h2 class="Subtitle" id="u8r.">
+Documentaţie
+</h2>
+<p class="Text" id="ggb.">
+Exisţa o mulţime de documente, FAQ-uri şi articole care pot fi consultate de pe pagina site-ului principal Firebird.
+</p>
+<p class="Text" id="ggb.">De asemenea se poate verifica şi daca există
+o comunitate locală&nbsp; sau listă de discuţii de unde se poate obtine
+ajutor în limba nativă.
+</p>
+<p class="Text" id="n2hh">
+Toata informaţia descrisă aici se regăseşte şi pe site-ul Firebird.Puteţi verfica şi <a href="http://www.firebirdnews.org/" id="fha0">www.firebirdnews.org</a> pentru cele mai recente ştiri în legătura cu proiectul Firebird .
+</p>
+<h2 class="Subtitle" id="pyel">
+Şi pentru baze de date mari<br id="z16e">
+</h2>
+<p class="Text" id="sbba">Unii oameni cred ca Firebird este un
+RDBMS(Sistem de gestiune al bazelor de date) care poate fi folosit doar
+cu baze de date mici având câteva conexiuni. <b id="lwma">Este total greşit acest punct de vedere!</b> Firebird este folosit cu baze de date mari şi cu multe conexiuni concurente.
+Se poate citi <a href=http://www.ib-aid.com/articles/item104>articolul complet</a> despre baza de date reale de peste 1 Tera.
+</p>
+</td>
+</tr>
+<tr id="f:97">
+<td colspan="3" id="g5w3" valign="top">
+<hr id="o3qj">
+</td>
+</tr>
+<tr id="ss0i">
+<td id="mzbp" valign="top">
+<h2 class="Subtitle" id="tvc0">
+Unelte&nbsp; &amp; Componente<br id="d65k">
+</h2>
+<p class="Text" id="kkms">
+Aici veţi găsi o listă cu resurse interesante incluzând unelte de administrare, drivere etc. Vă rugăm să verificaţi situl&nbsp; <a href="http://www.firebirdsql.org/" id="evg:">oficial Firebird</a> pentru&nbsp; o lista&nbsp; <b id="v3vo">mai completă</b> şi mai actuală.
+</p>
+<p class="Subtitle" id="kmxv">
+Unelte Grafice de administrare<br id="nnhv">
+</p>
+<ul class="Text" id="vvmn" type="disc">
+<li id="g0c7">
+<a href="http://www.flamerobin.org/" id="d.li">FlameRobin (Open Source, funcţionează pe Windows, Linux, MacOSX şi&nbsp; FreeBSD) </a>
+</li>
+<li id="pyy4">
+<a href="http://www.ibexpert.com/" id="g543">IBExpert (are o versiune gratuită) </a>
+</li>
+<li id="m4fy">
+<a href="http://www.upscene.com/" id="b.:e">DB Workbench </a>
+</li>
+<li id="ng:l">
+<a href="http://www.sqlly.com/" id="q8e4">Firebird Development Studio</a>
+</li>
+</ul>
+<p class="Subtitle" id="p1mp">
+Drivere şi componente
+</p>
+<blockquote id="wix1">
+<h3 class="Text" id="q8d0">
+Componente Delphi<br id="zq96">
+</h3>
+<ul class="Text" id="jqwy">
+<li id="h-es">
+<a href="http://www.ibobjects.com/" id="ou4l">IB Objects</a>
+</li>
+<li id="pwlc">
+<a href="http://www.devrace.com/" id="t.he">FIBPlus</a>
+</li>
+<li id="v-nu">
+<a href="http://www.progdigy.com/modules.php?name=UIB" id="z2_3">UIB (Unified InterBase Components) </a>
+</li>
+<li id="mgz1">
+<a href="http://zeos.firmos.at/portal.php" id="f-kx">Zeos </a>
+</li>
+</ul>
+<h3 class="Text" id="eqef">
+Driver ODBC
+</h3>
+<ul class="Text" id="vfdu">
+<li id="r:fp">
+<a href="http://www.firebirdsql.org/index.php?op=files&amp;id=odbc" id="w7dd">Driver Firebird ODBC (Oficial)</a>
+</li>
+<li id="eu.0">
+<a href="http://www.easysoft.com/products/data_access/odbc_interbase_driver/index.html" id="eu63"> EasySoft </a>
+</li>
+</ul>
+<h3 class="Text" id="o:d1">
+OLEDB
+</h3>
+<ul class="Text" id="hn5c">
+<li id="ulav">
+<a href="http://www.ibprovider.com/eng/index.html" id="okiz"> IBProvider</a>
+</li>
+</ul>
+<h3 class="Text" id="oiul">
+Java
+</h3>
+<ul class="Text" id="m1m4">
+<li id="esjo">
+<a href="http://www.firebirdsql.org/index.php?op=files&amp;id=jaybird" id="ac0s"> JayBird </a>
+</li>
+</ul>
+<h3 class="Text" id="qkfy">
+.Net Provider
+</h3>
+<ul class="Text" id="ub1p">
+<li id="hy0h">
+<a href="http://www.firebirdsql.org/index.php?op=files&amp;id=netprovider" id="ux6t"> Firebird .Net Provider</a>
+</li>
+</ul>
+<h3 class="Text" id="nnrr">
+C++
+</h3>
+<ul class="Text" id="picc">
+<li id="vm91">
+<a href="http://www.ibpp.org/" id="o9x4" target="_blank"> IBPP</a>
+</li>
+</ul>
+<h3 class="Text" id="hx6d">
+Alte limbaje
+</h3>
+<ul class="Text" id="xz-2" type="disc">
+<li id="vo8-">
+<a href="http://www.php.net/manual/en/ref.ibase.php" id="wx0s">PHP</a>
+</li>
+<li id="rz-i">
+<a href="www.firebirdsql.org/index.php?op=devel&sub=python" id="suxp">Python</a>
+</li>
+<li id="au41">
+<a href="http://sourceforge.net/projects/dbi-interbase/" id="yeq9">Perl</a>
+</li>
+<li id="au41">
+<a href="http://github.com/rowland/fb" id="yeq9">Ruby</a>
+</li>
+<li id="au41">
+<a href="http://code.google.com/p/fbclient/" id="yeq9">Lua</a>
+</li>
+</ul>
+</blockquote>
+</td>
+<td id="sbf1" bgcolor="#000000">&nbsp;
+
+</td>
+<td id="n_if" valign="top">
+<h2 class="Subtitle" id="klvc">
+<b id="pwww">Unelte de Replicare<br id="k5:l">
+</b>
+</h2>
+<ul class="Text" id="ty:y" type="disc">
+<li id="t4mn">
+<a href="http://www.ibphoenix.com/main.nfs?a=ibphoenix&amp;s=1141149701:439782&amp;page=ibp_replicator" id="jzbk">IBReplicator </a>
+</li>
+<li id="eavt">
+<a href="http://www.meta.com.au/index.php?option=content&amp;task=view&amp;id=23&amp;Itemid=33" id="pm8w"> FBReplicator </a>
+</li>
+<li id="lt5a">
+<a href="http://dbre.sourceforge.net/" id="qmxv">DBRE</a>
+</li>
+</ul>
+<h2 class="Subtitle" id="fzcl">
+Linkuri şi resurse pt Ajutor şi Suport
+</h2>
+<ul class="Text" id="riia" type="disc">
+<li id="c3x8">
+<a href="http://www.firebirdnews.org/" id="jenu"> Ştiri despre Firebird<br id="yd4t">
+</a>
+</li>
+<li id="j0t1">
+<a href="http://www.firebase.com.br/" id="o.5o"> FireBase (în Portugheză) </a>
+</li>
+<li id="b3:.">
+<a href="http://www.ibphoenix.com/" id="tgip"> IBPhoenix </a>
+</li>
+<li id="n4.e">
+<a href="http://www.comunidade-firebird.org/" id="uaqx"> CFLP (în Portugheza) </a>
+</li>
+<li id="aw9i">
+<a href="http://www.firebirdsql.org/index.php?op=lists" id="j-5."> Liste şi Grupuri de Suport </a>
+</li>
+<li id="lie4">
+<a href="http://www.ibase.ru/" id="w40b"> IBase (Rusă) </a>
+</li>
+</ul>
+<h2 class="Subtitle" id="jlm2">
+Linkuri Diverse
+</h2>
+<ul class="Text" id="ecs_" type="disc">
+<li id="yb:7">
+<a href="http://www.firebirdsql.org/index.php?op=devel&sub=engine&id=roadmap&nosb=1" id="yt.l">Firebird 2010 RoadMap </a>
+</li>
+<li id="kxwt">
+<a href="http://www.mindthebird.com/" id="eg24" target="_blank">Campania Mind The Bird</a>
+</li>
+</ul>
+<ul class="Text" id="lp:8" type="disc">
+<li id="j4m_">
+<a href="http://www.ibsurgeon.com/" id="tjiw">IB Surgeon</a>
+</li>
+</ul>
+<h2 class="Subtitle" id="o:d:">
+Articole&nbsp; şi documentaţie
+</h2>
+<ul class="Text" id="m6sf">
+<li id="oapk">
+<a href="http://www.firebirdsql.org/index.php?op=devel&amp;sub=doc" id="noax" target="_blank"> Proiectul Oficial Documentatie Firebird </a>(StartRapid si alte ghiduri generale)
+</li>
+<li id="gvhs">
+<a href="http://www.janus-software.com/fbmanual/" id="uoe0" target="_blank"> Manualul FB Online </a>(Admin, PHP, PSQL, etc.)
+</li>
+<li id="gvhs">
+<a href="http://www.firebirdfaq.org/" id="bx:n" target="_blank">FirebirdFAQ</a>
+</li>
+</ul>
+<p class="Subtitle" id="lizl">&nbsp;
+
+</p>
+<h2 class="Subtitle" id="mo9b">
+Doriţi să daţi o mână de ajutor?
+</h2>
+<p class="Text" id="cdn4">
+Datorită naturii<span id="jgs_"><b id="vuhw"> Open Source</b></span> (Cod Liber) a proiectului <span id="l:th"><b id="tvbx">oricine</b></span> poate <span id="xda:"><b id="ynm0">contribui</b></span> în dezvoltarea unor noi funcţionalităţi sau rezolvarea unor buguri . Dacă doriţi să deveniţi un membru al echipei de <span id="w535"><i id="e4tj">Dezvoltare Firebird</i></span> ,trebuie să descărcaţi <a href="http://sourceforge.net/projects/firebird" id="p8d0">codul sursă Firebird</a> de pe <i id="hx3l">sourceforge </i>şi să il studiaţi, după&nbsp; care ,trebuie să vă înscrieţi&nbsp; pe lista de discuţii <a href="http://firebird.sourceforge.net/index.php?op=lists" id="i609"> fbdevel</a> unde se poate&nbsp; întreba şi contacta pe ceilalţi dezvoltatori (notă: <i id="rhxu">fbdevel </i>nu este o listă generală de suport, şi nu este indicat să puneţi întrebări de suport acolo, folosiţi grupul <a href="http://www.yahoogroups.com/messages/firebird-support" id="rp2q"><i id="evsd">firebird-support</i></a> pentru ajutor gratuit din partea comunităţii).
+</p>
+<p class="Text" id="db8t">
+Nu este nevoie să fiţi neaparat programator pentru a ajuta proiectul . Puteţi deveni <b id="teie">membru</b> al&nbsp;<a href="http://www.firebirdsql.org/ff/foundation/" id="uxkx"><b id="enrm">Fundaţiei Firebird</b></a> sau se poate face o&nbsp;<a href="http://www.firebirdsql.org/index.php?op=ffoundation&amp;id=contributions#donation" id="mwkb"><b id="q2gm">donaţie</b></a> şi astfel să ajutaţi cu fonduri echipa de dezvoltatori şi ei să&nbsp; investeasca mai mult timp în lucrul pentru proiect
+</p>
+<p class="Text" id="db8t">
+Vă mulţumim pentru cele două minute ...<br id="laki">
+</p>
+<p class="Text" id="jmdx">
+<br id="s5:c">
+</p>
+</td>
+</tr>
+<tr id="t5lz">
+<td colspan="3" id="uaed" valign="top">
+<table id="s2hb" border="1" bordercolor="#0000ff" cellpadding="10" cellspacing="0" width="100%">
+<tbody id="rwyy">
+<tr id="x2wc">
+<td id="wkze">
+<div id="ij1w" align="center">
+<span class="Subtitle" id="uh5d"><a href="http://www.firebirdsql.org/" id="c1gm">www.firebirdsql.org</a><br id="vgor">
+<a href="http://www.firebirdnews.org/" id="t8dz">www.firebirdnews.org</a></span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</body></html>

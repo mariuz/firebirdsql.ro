@@ -1,0 +1,4 @@
+*.pyc
+www/images/stats.html
+www/images/LANGREF.html
+firebird_ro/settings_production.py

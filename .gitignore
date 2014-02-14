@@ -1,5 +1,5 @@
 *.pyc
 www/images/stats.html
 www/images/LANGREF.html
-www/static/
+www/static/*
 firebird_ro/local_settings.py

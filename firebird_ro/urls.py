@@ -15,19 +15,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     ('^$', index),
-    ('^indexold/$', indexold),
-    ('^download/$', download),
-    ('^firebird-2.1.3-a-fost-lansat/$', firebird213),
-    ('^comunitatea-firebird-romania/$', comunitatea),
-    ('^resurse/$', resurse),
-    ('^suport/$', suport),
-    ('^sitemap/$', sitemap),
-    ('^sgdb-firebird/$', sgdb),
     (r'^news/$', 'firebird_ro.news.views.index'),
     (r'^news/(?P<news_id>\d+)/$', 'firebird_ro.news.views.detail'),
-
-
-
-
     
 )

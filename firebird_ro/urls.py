@@ -1,6 +1,8 @@
 from django.conf.urls.defaults import *
 from firebird_ro.views import *
 from django.contrib import admin
+from django.http import HttpResponse
+
 admin.autodiscover()
 
 
@@ -17,5 +19,6 @@ urlpatterns = patterns('',
     ('^$', index),
     (r'^news/$', 'firebird_ro.news.views.index'),
     (r'^news/(?P<news_id>\d+)/$', 'firebird_ro.news.views.detail'),
+    (r'^robots\.txt$', lambda r: HttpResponse("User-agent: *\nAllow: /", mimetype="text/plain"))
     
 )

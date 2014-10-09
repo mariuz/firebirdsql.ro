@@ -10,7 +10,7 @@ class News(models.Model):
     def __unicode__(self):
     	return self.title
     class Meta:
-	verbose_name_plural = 'News'
+        verbose_name_plural = 'News'
 class Blogs(models.Model):
     title = models.CharField(max_length=140)
     body = models.TextField()

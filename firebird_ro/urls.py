@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url, include
 from firebird_ro.views import *
 from django.contrib import admin
 from django.http import HttpResponse

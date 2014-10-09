@@ -12,15 +12,7 @@ def index(request):
     current_section = 'Start'
     page_title = 'Prima Pagina'
     latest_news_list = News.objects.raw('SELECT a.ID, a.TITLE, a.BODY, a.URL, a.PUBLICATION_DATE FROM NEWS_NEWS a order by id desc')[:10]
-    FirebirdVersion=backend.Database.FB_API_VER
     html = t.render(Context({'latest_news_list': latest_news_list, 'current_section':current_section,'page_title':page_title,'django_version':django.VERSION}))
-    return HttpResponse(html)
-def indexold(request):
-    t = get_template('indexold.html')
-    current_section = 'Start'
-    page_title = 'Prima Pagina'
-    FirebirdVersion=backend.Database.FB_API_VER
-    html = t.render(Context({'current_date': now,'current_section':current_section,'page_title':page_title,'django_version':django.VERSION}))
     return HttpResponse(html)
 
 def download(request):
